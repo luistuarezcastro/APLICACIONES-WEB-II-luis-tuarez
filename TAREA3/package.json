@@ -1,0 +1,20 @@
+{
+  "name": "tarea3",
+  "version": "1.0.0",
+  "description": "Tarea 3 appweb II base de datos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "base",
+    "de",
+    "datos",
+    "conexion"
+  ],
+  "author": "luisTuarez",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^7.0.5"
+  }
+}

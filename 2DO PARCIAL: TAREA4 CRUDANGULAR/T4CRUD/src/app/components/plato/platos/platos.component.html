@@ -1,0 +1,65 @@
+
+    <div class="container p-4">
+      <figure class="text-center">
+          <blockquote class="blockquote">
+            <p class="h2">  PLATOS </p>
+          </blockquote>
+      </figure>
+
+      <div class="row ">
+
+          <div class="col-sm-6 offset-md-3 ">
+              <div class="card card-body">
+                <form #loginForm="ngForm" (ngSubmit)="submitData(loginForm.value)" [formGroup]="form">
+                    <div class="form-group mb-3">
+                      <input formControlName="id" [(ngModel)]="id" placeholder="ID plato(Para Actualizar)" id="id" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group mb-3">
+                      <input formControlName="nombre" placeholder="Nombre" id="nombre" type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && form.controls['nombre'].errors }" />
+                      <div *ngIf="submitted && form.controls['nombre'].errors" class="invalid-feedback">
+                        <div *ngIf="form.controls['nombre'].errors['required']">ponga el nombre.</div>
+                        <div *ngIf="form.controls['nombre'].errors['lowercase']">El nombre del plato debe estar en minúsculas, exceptuando las primeras letras de cada palabra.</div>
+                      </div>
+                    </div>
+                    <div class="form-group mb-3">
+                      <input formControlName="calorias" placeholder="calorias" id="calorias" type="number" class="form-control" [ngClass]="{ 'is-invalid': submitted && form.controls['calorias'].errors }" />
+                      <div *ngIf="submitted && form.controls['calorias'].errors" class="invalid-feedback">
+                        <div *ngIf="form.controls['calorias'].errors['negative']">las calorias no puede ser negativas.</div>
+                        <div *ngIf="form.controls['calorias'].errors['max']">las calorias no puede ser mayor a 9999.</div>
+                      </div>
+                    </div>
+                      <div class="d-grid gap-2 col-6 mx-auto">
+                          <button class="btn btn-secondary btn-block">
+                              Guardar
+                          </button>
+                          <button type="button" class="btn btn-dark ">
+                              Cancelar
+                          </button>
+                      </div>
+                  </form>
+              </div>
+
+          </div>
+          <table class="table">
+            <thead>
+              <tr >
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">calorias (4 digitos)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let plato of dataplatos.platos">
+                <td>{{plato._id}}</td>
+                <td>{{plato.nombre}}</td>
+                <td>{{plato.calorias}}</td>
+
+                <td>
+                  <button type="button" class="btn btn-danger btn-sm" (click)="plato._id && deleteplato(plato._id)">Eliminar</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+      </div>
+

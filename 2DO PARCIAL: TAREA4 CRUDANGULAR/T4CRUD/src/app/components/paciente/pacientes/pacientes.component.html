@@ -1,0 +1,81 @@
+
+    <div class="container p-4">
+      <figure class="text-center">
+          <blockquote class="blockquote">
+            <p class="h2">  PACIENTES </p>
+          </blockquote>
+      </figure>
+
+      <div class="row ">
+
+          <div class="col-sm-6 offset-md-3 ">
+              <div class="card card-body">
+                <form #loginForm="ngForm" (ngSubmit)="submitData(loginForm.value)" [formGroup]="form">
+                    <div class="form-group mb-3">
+                      <input formControlName="id" [(ngModel)]="id" placeholder="ID paciente(Para Actualizar)" id="id" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group mb-3">
+                      <input formControlName="nombre" placeholder="Nombre" id="nombre" type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && form.controls['nombre'].errors }" />
+                      <div *ngIf="submitted && form.controls['nombre'].errors" class="invalid-feedback">
+                        <div *ngIf="form.controls['nombre'].errors['required']">ponga el nombre.</div>
+                        <div *ngIf="form.controls['nombre'].errors['lowercase']">El nombre debe estar en minúsculas, exceptuando las primeras letras de cada palabra.</div>
+                      </div>
+                    </div>
+                    <div class="form-group mb-3">
+                      <input formControlName="identificacion" placeholder="identificacion" id="identificacion" type="number" class="form-control" [ngClass]="{ 'is-invalid': submitted && form.controls['identificacion'].errors }" />
+                      <div *ngIf="submitted && form.controls['identificacion'].errors" class="invalid-feedback">
+                        <div *ngIf="form.controls['identificacion'].errors['negative']">identificacion no puede ser negativo.</div>
+                        <div *ngIf="form.controls['identificacion'].errors['max']">identificacion no puede ser mayor a 9999.</div>
+                      </div>
+                    </div>
+                    <div class="form-group mb-3">
+                      <input formControlName="telefono" placeholder="telefono" id="telefono" type="number" class="form-control" [ngClass]="{ 'is-invalid': submitted && form.controls['telefono'].errors }" />
+                      <div *ngIf="submitted && form.controls['telefono'].errors" class="invalid-feedback">
+                        <div *ngIf="form.controls['telefono'].errors['negative']">telefono no puede ser negativa.</div>
+                        <div *ngIf="form.controls['telefono'].errors['max']">telefono no puede ser mayor a 9999999999.</div>
+                      </div>
+                    </div>
+                    <div class="form-group mb-3">
+                      <input formControlName="direccion" placeholder="direccion" id="direccion" type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && form.controls['direccion'].errors }" />
+                      <div *ngIf="submitted && form.controls['direccion'].errors" class="invalid-feedback">
+                        <div *ngIf="form.controls['direccion'].errors['negative']">direccion necesaria.</div>
+                        <div *ngIf="form.controls['direccion'].errors['max']">la direccion debe estar en minúsculas, exceptuando las primeras letras de cada palabra</div>
+                      </div>
+                    </div>
+                      <div class="d-grid gap-2 col-6 mx-auto">
+                          <button class="btn btn-secondary btn-block">
+                              Guardar
+                          </button>
+                          <button type="button" class="btn btn-dark ">
+                              Cancelar
+                          </button>
+                      </div>
+                  </form>
+              </div>
+
+          </div>
+          <table class="table">
+            <thead>
+              <tr >
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">identificacion (4 digitos)</th>
+                <th scope="col">telefono (10 digitos)</th>
+                <th scope="col">direccion</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let paciente of datapacientes.pacientes">
+                <td>{{paciente._id}}</td>
+                <td>{{paciente.nombre | uppercase }}</td>
+                <td>{{paciente.identificacion | currency:'USD':'' }}</td>
+                <td>{{paciente.telefono | currency:'USD':''}}</td>
+                <td>{{paciente.direccion | uppercase  }}</td>
+                <td>
+                  <button type="button" class="btn btn-danger btn-sm" (click)="paciente._id && deletepaciente(paciente._id)">Eliminar</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+      </div>

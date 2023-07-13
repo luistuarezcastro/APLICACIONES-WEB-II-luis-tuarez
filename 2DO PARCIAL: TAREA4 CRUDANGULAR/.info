@@ -1,3 +1,5 @@
 en esta carpeta 2DO PARCIAL: TAREA4 CRUDANGULAR se encuentra el backend y frontend de la tarea 4
 este trabajo fue realizado en el framework angular utilizando las 3 entidades asignadas
 las evidencias del funcionamiento estan en el pdf
+si desea ejecutar el programa instale un proyecto en angular en la carpeta T4CRUD junto con npm install
+en la carpeta layers instale los modulos con npm install
